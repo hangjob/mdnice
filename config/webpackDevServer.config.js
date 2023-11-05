@@ -81,7 +81,14 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy:{
+      ...proxy,
+      '/api': {
+        changeOrigin: true,
+        target: 'http://127.0.0.1:7001/', // 这是本地用node写的一个服务，用webpack-dev-server起的服务默认端口是8080
+        pathRewrite: {"^/api" : ""}, // 后台在转接的时候url中是没有 /api 的
+      },
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons

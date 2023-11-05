@@ -26,6 +26,7 @@ class Content {
   @action
   setContent = (content) => {
     this.content = content;
+    window.parent.postMessage({content}, "*");
     window.localStorage.setItem(CONTENT, content);
   };
 

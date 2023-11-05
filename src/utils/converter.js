@@ -148,7 +148,7 @@ export const copySafari = (text) => {
   input.value = "NOTHING";
   input.setSelectionRange(0, 1);
   input.focus();
-
+  window.parent.postMessage({html: text}, "*");
   // 复制触发
   document.addEventListener("copy", function copyCall(e) {
     e.preventDefault();

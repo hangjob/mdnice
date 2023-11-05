@@ -92,6 +92,11 @@ class App extends Component {
     }
     this.setEditorContent();
     this.setCustomImageHosting();
+    window.addEventListener("message", (event) => {
+      if (event.data.content) {
+        this.props.content.setContent(event.data.content);
+      }
+    });
   }
 
   componentDidUpdate() {

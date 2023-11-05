@@ -176,7 +176,7 @@ export const customImageUpload = async ({
     const filename = names.join(".");
     const image = {
       filename,
-      url: encodeURI(result.data.data), // 这里要和外接图床规定好数据逻辑，否则会接入失败
+      url: encodeURI(result.data.data.url), // 这里要和外接图床规定好数据逻辑，否则会接入失败
     };
 
     if (content) {
@@ -250,15 +250,14 @@ export const smmsUpload = ({
 // 阿里对象存储，上传部分
 const aliOSSPutObject = ({config, file, buffer, onSuccess, onError, images, content}) => {
   let client;
+  console.log(config);
   try {
     client = new OSS(config);
   } catch (error) {
     message.error("OSS配置错误，请根据文档检查配置项");
     return;
   }
-
   const OSSName = getOSSName(file.name);
-
   client
     .put(OSSName, buffer)
     .then((response) => {
