@@ -109,6 +109,7 @@ export const solveHtml = () => {
     item.setAttribute("data-tool", "mdnice编辑器");
   }
   let html = element.innerHTML;
+  // html = html.replace(/<img [^>]*src=['static"]/g, `<img src="https://www.haiwb.com`);
   html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
   html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
   html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
@@ -147,7 +148,7 @@ export const copySafari = (text) => {
   // 让 input 选中一个字符，无所谓那个字符
   input.value = "NOTHING";
   input.setSelectionRange(0, 1);
-  input.focus();
+  // input.focus();
   window.parent.postMessage({html: text}, "*");
   // 复制触发
   document.addEventListener("copy", function copyCall(e) {

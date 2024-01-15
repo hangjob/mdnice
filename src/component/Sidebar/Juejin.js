@@ -29,7 +29,7 @@ class Juejin extends Component {
     if (this.html.length > 60000) {
       message.error("超过 60000 字符，无法上传稀土掘金");
     } else {
-      message.success("已复制且添加 mdnice 排版后缀，感谢宣传，请到稀土掘金粘贴");
+      // message.success("已复制且添加 mdnice 排版后缀，感谢宣传，请到稀土掘金粘贴");
     }
     layout.innerHTML = html; // 恢复现场
   };

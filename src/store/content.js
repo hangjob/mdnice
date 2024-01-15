@@ -76,5 +76,4 @@ addStyleLabel(STYLE_LABELS);
 replaceStyle(BASIC_THEME_ID, TEMPLATE.basic);
 
 store.content = window.localStorage.getItem(CONTENT);
-
 export default store;

@@ -18,7 +18,7 @@ import {
   IMAGE_HOSTING_NAMES,
 } from "./constant";
 import {toBlob, getOSSName, axiosMdnice} from "./helper";
-
+import {utils, crypto, string} from "pm-utils"
 function showUploadNoti() {
   message.loading("图片上传中", 0);
 }
@@ -167,6 +167,7 @@ export const customImageUpload = async ({
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
+        sing: crypto.cryptoJs.encrypt({word: {domain: "itnavs", uid: string.randomId()}, tp: "pb"}),
       },
     };
     const postURL = imageHosting.hostingUrl;
@@ -176,7 +177,7 @@ export const customImageUpload = async ({
     const filename = names.join(".");
     const image = {
       filename,
-      url: encodeURI(result.data.data.url), // 这里要和外接图床规定好数据逻辑，否则会接入失败
+      url: encodeURI("https://www.haiwb.com" + result.data.data.url), // 这里要和外接图床规定好数据逻辑，否则会接入失败
     };
 
     if (content) {
